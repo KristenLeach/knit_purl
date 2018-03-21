@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Knit Happens</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <% if logged_in? %>
+        <a href="/projects/new"> Create A Project </a>
+        <a href="/logout"> Log Out </a>
+        <p>Welcome, <%= current_user.username %>!</p>
+      <% else %>
+        <a href="/signup">Sign Up</a>
+        <a href="/login"> Sign In </a>
+      <%end %>
+
+      </nav>
+      <div class="container">
+      <h1>Knit Happens</h1>
+       <%= yield %>
+    </div>
+
+  </body>
+</html>
