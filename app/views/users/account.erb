@@ -1,0 +1,19 @@
+<h3> Stitch? Please! What are you working on today? </h3>
+
+<% @user.projects.each do |p|%>
+<h4><%= p.name %></h4>
+<ul>
+<li><%=p.materials%></li>
+<li><%=p.instructions%></li>
+</ul>
+<form method="post" action="/projects/<%=p.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Project">
+</form>
+
+<form method="post" action="/projects/<%=p.id%>/edit">
+  <input id="hidden" type="hidden" name="_method" value="EDIT">
+  <input type="submit" value="Edit Project">
+</form>
+
+<%end%>

@@ -1,25 +1,42 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Knit Happens</title>
-  </head>
-  <body>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
 
-    <div class="container">
+  <title>AppKnitHappens</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="/stylesheets/main.css" />
+</head>
+<body>
+  <div class="wrapper">
+  
+  <div class="container">
       <% if logged_in? %>
-        <a href="/projects/new"> Create A Project </a>
+        <a href="/projects/new"> Create Project </a>
         <a href="/logout"> Log Out </a>
-        <p>Welcome, <%= current_user.username %>!</p>
+        <h2>Welcome, <%=current_user.username %>!</h2>
       <% else %>
+        <h2> Welcome to Knit Happens! </h2>
         <a href="/signup">Sign Up</a>
         <a href="/login"> Sign In </a>
       <%end %>
 
-      </nav>
-      <div class="container">
-      <h1>Knit Happens</h1>
-       <%= yield %>
-    </div>
+      <%= yield %>
 
-  </body>
-</html>
+    <footer class="branding">
+      <small>&copy; 2018 <strong>AppKnitHappens</strong></small>
+    </footer>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <!--[if lt IE 7]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
+    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+  <![endif]-->
+</body>
