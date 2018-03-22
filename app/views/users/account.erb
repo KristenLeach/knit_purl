@@ -11,8 +11,7 @@
   <input type="submit" value="Delete Project">
 </form>
 
-<form method="post" action="/projects/<%=p.id%>/edit">
-  <input id="hidden" type="hidden" name="_method" value="EDIT">
+<form method="get" action="/projects/<%=p.id%>/edit">
   <input type="submit" value="Edit Project">
 </form>
 

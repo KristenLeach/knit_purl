@@ -1,0 +1,12 @@
+<h2><%=@project.name%></h2>
+<p>Materials:<%=@project.materials%></p>
+<p>Instructions:<%=@project.instructions%></p>
+<br>
+
+<form method="post" action="/projects/<%=@project.slug%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Project">
+</form>
+<form method="get" action="/projects/<%=p.id%>/edit">
+    <input type="submit" value="Edit Project">
+</form>

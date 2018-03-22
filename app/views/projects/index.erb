@@ -1,0 +1,17 @@
+<h2>Show me your knits!</h2>
+<%@projects.each do |p|%>
+    <h4><%=p.name %></h4>
+    <p><%=p.materials%></p>
+    <p><%=p.instructions%></p>
+        <%if current_user.projects.include?(p)%>
+         <form method="post" action="/projects/<%=p.id%>/delete">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete Project">
+        </form>
+
+        <form method="get" action="/projects/<%=p.id%>/edit">
+            <input type="submit" value="Edit Project">
+        </form>
+        <%end%>
+    <br>
+<%end%>
