@@ -2,11 +2,14 @@
 <p>Materials:<%=@project.materials%></p>
 <p>Instructions:<%=@project.instructions%></p>
 <br>
+ <%if current_user.projects.include?(@project)%>
+         <form method="post" action="/projects/<%=@project.id%>/delete">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete Project">
+        </form>
 
-<form method="post" action="/projects/<%=@project.slug%>/delete">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Project">
-</form>
-<form method="get" action="/projects/<%=p.id%>/edit">
-    <input type="submit" value="Edit Project">
-</form>
+        <form method="get" action="/projects/<%=@project.id%>/edit">
+            <input type="submit" value="Edit Project">
+        </form>
+<%end%>
+

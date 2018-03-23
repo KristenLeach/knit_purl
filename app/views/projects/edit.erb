@@ -1,6 +1,6 @@
 <h2>This Knit is WHACK!</h2>
 <p>Edit your Project Below:</p>
-<form action="/projects/<%=@project.slug%>" method="POST">
+<form action="/projects/<%=@project.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
     <p>Name: <input type="text" name="name" placeholder='<%=@project.name%>'></p>    
     <p>Materials: <input type="text" name="materials" placeholder='<%=@project.materials%>'></p>

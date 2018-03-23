@@ -18,8 +18,11 @@
   
   <div class="container">
       <% if logged_in? %>
+        <a href="/projects"> Home </a>
+        <a href="/users/<%=current_user.slug%>"> Your Projects </a>
         <a href="/projects/new"> Create Project </a>
         <a href="/logout"> Log Out </a>
+
         <h2>Welcome, <%=current_user.username %>!</h2>
       <% else %>
         <h2> Welcome to Knit Happens! </h2>

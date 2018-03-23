@@ -11,17 +11,17 @@ class UserController < ApplicationController
 
     post '/signup' do
         user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-        !!user.save ? (session[:user_id] = user.id) && (redirect "/users/#{user.slug}") : flash[:error] = "Something went wrong. Please try again!" && (redirect "/signup")
+        !!user.save ? (session[:user_id] = user.id) && (redirect "/projects") : flash[:error] = "Something went wrong. Please try again!" && (redirect "/signup")
     end
 
     get '/login' do
         user = User.find_by(:username => params[:username])
-        !logged_in? ? (erb :'/users/login') : (redirect "/users/#{user.slug}")
+        !logged_in? ? (erb :'/users/login') : (redirect "/projects")
     end
 
     post "/login" do
         user = User.find_by(:username => params[:username])
-        !!user && user.authenticate(params[:password]) ? (session[:user_id] = user.id) && (redirect "/users/#{user.slug}") : (redirect "/signup")
+        !!user && user.authenticate(params[:password]) ? (session[:user_id] = user.id) && (redirect "/projects") : (redirect "/signup")
     end
 
     get "/logout" do
