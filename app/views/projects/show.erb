@@ -1,16 +1,14 @@
-<br>
-<br>
+<h2>Knit fast, die warm...</h2>
 <div class='project_card'>
-<div class='project_name'><h3><%=@project.name%></h3></div>
+<h3 class='project_name'><%=@project.name%></h3>
 <br>
-<div class='project_img'><img src='<%=@project.image_url%>' height="125" width="125"></div>
+<img class='project_img'src='<%=@project.image_url%>' height="125" width="125">
+<br>
 <br>
 <div class='project_info'>
 <p>Materials: <%=@project.materials%></p>
 <p>Instructions: <%=@project.instructions%></p>
 </div>
-<br>
-<br>
  <%if current_user.projects.include?(@project)%>
          <form method="post" action="/projects/<%=@project.id%>/delete">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
@@ -20,6 +18,5 @@
         <form method="get" action="/projects/<%=@project.id%>/edit">
             <input type="submit" value="Edit Project">
         </form>
-</div>
 <%end%>
-
+</div>

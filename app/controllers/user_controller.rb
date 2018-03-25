@@ -1,4 +1,7 @@
 class UserController < ApplicationController
+    register Sinatra::Flash
+    require 'sinatra/flash'
+    enable :sessions
 
     get '/signup' do 
         !logged_in? ? (erb :'/users/signup') : (redirect "/")
@@ -11,7 +14,13 @@ class UserController < ApplicationController
 
     post '/signup' do
         user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-        !!user.save ? (session[:user_id] = user.id) && (redirect "/projects") : flash[:error] = "Something went wrong. Please try again!" && (redirect "/signup")
+        if user.save 
+            (session[:user_id] = user.id)
+            (redirect "/projects") 
+        else
+            flash[:error] = "Something went wrong. Please try again!"
+            redirect "/signup"
+        end
     end
 
     get '/login' do
@@ -21,11 +30,23 @@ class UserController < ApplicationController
 
     post "/login" do
         user = User.find_by(:username => params[:username])
-        !!user && user.authenticate(params[:password]) ? (session[:user_id] = user.id) && (redirect "/projects") : (redirect "/signup")
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id
+            redirect "/projects"
+        else
+            flash[:error] = "Incorrect username or password. Please try again!"
+            redirect "/login"
+        end
     end
 
     get "/logout" do
-        !!logged_in? ? (session.destroy) && (redirect '/login') : (redirect "/")
+        if logged_in? 
+            session.destroy
+            redirect '/login' 
+        else
+            flash[:error] = "Something went wrong. Please try again!"
+            redirect "/"
+        end
     end
 
 end

@@ -1,13 +1,12 @@
-<br>
-<br>
+
 <h2>Hi <%=current_user.username %>!</h2>
 <h4> Stitch? Please! What are you working on today? </h4>
 <br>
 <div class='project_card'>
 <% @user.projects.each do |p|%>
-<div class='project_name'><h3><%= p.name %></h3></div>
+<h3 class='project_name'><%= p.name %></h3>
+<img class='project_img' src='<%=p.image_url%>' alt='<%=p.name%>' height="125" width="125">
 <br>
-<div class='project_img'><img src='<%=p.image_url%>' alt='<%=p.name%>' height="125" width="125"></div>
 <br>
 <div class='project_info'>
 <p>Materials: <%=p.materials%></p>

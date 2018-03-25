@@ -19,11 +19,18 @@ class ProjectController < ApplicationController
 
     post '/projects' do
         if params.empty?
+            flash[:error] = "All fields must be filled in"
             redirect '/projects/new'
         elsif logged_in? && !params.empty?
             @project = current_user.projects.create(name: params[:name], materials: params[:materials], instructions: params[:instructions])
-            @project.save ? (redirect "/projects/#{@project.id}") : flash[:new] = "Your project could not be saved. Try again!" && (redirect '/projects/new')
+            if @project.save
+                redirect "/projects/#{@project.id}"
+            else
+                flash[:error] = "Your project could not be saved. Try again!"
+                redirect '/projects/new'
+            end
         else 
+            flash[:error] = "You must be logged in to see the projects index."
             redirect '/login'
         end
         current_user.save
@@ -34,6 +41,7 @@ class ProjectController < ApplicationController
             @project = Project.find_by_id(params[:id])
             erb :'/projects/show'
         else 
+            flash[:error] = "You must be logged in to view projects."
             redirect '/login'
         end
     end
@@ -43,6 +51,7 @@ class ProjectController < ApplicationController
             @project = Project.find_by_id(params[:id])
             erb :'/projects/edit'
         else 
+            flash[:error] = "You must be logged in to edit a project."
             redirect '/login'
         end
     end
@@ -50,11 +59,13 @@ class ProjectController < ApplicationController
     patch '/projects/:id' do
         @project = Project.find_by_id(params[:id])
         if params.empty?
+            flash[:error] = "All fields must be filled in"
             redirect "/projects/#{@project.id}/edit"
         elsif logged_in? && !params.empty?
             @project.update(name: params[:name], materials: params[:materials], instructions: params[:instructions])
             redirect "/projects/#{@project.id}"
         else 
+            flash[:error] = "You must be logged in."
             redirect '/login'
         end
     end
@@ -64,9 +75,9 @@ class ProjectController < ApplicationController
             @project = Project.find_by_id(params[:id])
             if @project.user == current_user then @project.delete else redirect '/login' end
         else 
+            flash[:error] = "You must be logged in."
             redirect '/login'
         end
         redirect '/projects'
     end
-
 end

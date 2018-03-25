@@ -13,13 +13,12 @@
 
   <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
-<header>
 
-</header>
 <body>
   <div class="wrapper">
-  <nav>
+ 
   <div class="container">
+  <div class ='header'>
       <% if logged_in? %>
       <h1> Knit Happens  ¯\_(ツ)_/¯</h1>
       <ul>
@@ -32,15 +31,22 @@
       <h1> Knit Happens  ¯\_(ツ)_/¯</h1>
       <ul>
         <li><a href="/signup">Sign Up</a></li>
-        <li><a href="/login"> Sign In </a></li>
+        <li><a href="/login"> Log In </a></li>
       </ul>
       <%end %>
-  </nav>
+  </div>
   <br>
-      <%= yield %>
+
+    <%= yield %>
+
+     <div class='error_message'>
+      <% if !!flash[:error] %>
+        <%= flash[:error] %>
+      <% end %>
+    </div>
 
     <footer class="branding">
-    <small>Crocheting is for hookers.  </small>
+      <small>Crocheting is for hookers.  </small>
       <small>&copy; 2018 <strong>KnitHappens</strong></small>
     </footer>
   </div>
