@@ -1,6 +1,15 @@
-<h2><%=@project.name%></h2>
-<p>Materials:<%=@project.materials%></p>
-<p>Instructions:<%=@project.instructions%></p>
+<br>
+<br>
+<div class='project_card'>
+<div class='project_name'><h3><%=@project.name%></h3></div>
+<br>
+<div class='project_img'><img src='<%=@project.image_url%>' height="125" width="125"></div>
+<br>
+<div class='project_info'>
+<p>Materials: <%=@project.materials%></p>
+<p>Instructions: <%=@project.instructions%></p>
+</div>
+<br>
 <br>
  <%if current_user.projects.include?(@project)%>
          <form method="post" action="/projects/<%=@project.id%>/delete">
@@ -11,5 +20,6 @@
         <form method="get" action="/projects/<%=@project.id%>/edit">
             <input type="submit" value="Edit Project">
         </form>
+</div>
 <%end%>
 

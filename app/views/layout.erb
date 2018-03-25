@@ -13,26 +13,34 @@
 
   <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
+<header>
+
+</header>
 <body>
   <div class="wrapper">
-  
+  <nav>
   <div class="container">
       <% if logged_in? %>
-        <a href="/projects"> Home </a>
-        <a href="/users/<%=current_user.slug%>"> Your Projects </a>
-        <a href="/projects/new"> Create Project </a>
-        <a href="/logout"> Log Out </a>
-
-        <h2>Welcome, <%=current_user.username %>!</h2>
+      <h1> Knit Happens  ¯\_(ツ)_/¯</h1>
+      <ul>
+        <li><a href="/projects"> Home </a></li>
+        <li><a href="/users/<%=current_user.slug%>"> Your Projects </a></li>
+        <li><a href="/projects/new"> Create Project </a></li>
+        <li><a href="/logout"> Log Out </a></li>
+      </ul>
       <% else %>
-        <h2> Welcome to Knit Happens! </h2>
-        <a href="/signup">Sign Up</a>
-        <a href="/login"> Sign In </a>
+      <h1> Knit Happens  ¯\_(ツ)_/¯</h1>
+      <ul>
+        <li><a href="/signup">Sign Up</a></li>
+        <li><a href="/login"> Sign In </a></li>
+      </ul>
       <%end %>
-
+  </nav>
+  <br>
       <%= yield %>
 
     <footer class="branding">
+    <small>Crocheting is for hookers.  </small>
       <small>&copy; 2018 <strong>KnitHappens</strong></small>
     </footer>
   </div>
