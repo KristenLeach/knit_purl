@@ -2,6 +2,7 @@
 <h2>Knitsporation Station</h2>
 <br>
 
+
 <%@projects.each do |p|%>
 
 <div class='project_card'>
@@ -14,6 +15,7 @@
     <p>Materials: <%=p.materials%></p>
     <p>Instructions: <%=p.instructions%></p>
     </div>
+    <small>Created by: <%=p.user.username%></small>
         <%if current_user.projects.include?(p)%>
          <form method="post" action="/projects/<%=p.id%>/delete">
             <input id="hidden" type="hidden" name="_method" value="DELETE">

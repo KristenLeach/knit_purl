@@ -68,6 +68,7 @@ class ProjectController < ApplicationController
             flash[:error] = "You must be logged in."
             redirect '/login'
         end
+        
     end
 
     delete '/projects/:id/delete' do

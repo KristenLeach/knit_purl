@@ -9,6 +9,7 @@
 <p>Materials: <%=@project.materials%></p>
 <p>Instructions: <%=@project.instructions%></p>
 </div>
+<small>Created by: <%=@project.user.username%></small>
  <%if current_user.projects.include?(@project)%>
          <form method="post" action="/projects/<%=@project.id%>/delete">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
