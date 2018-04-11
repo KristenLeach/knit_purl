@@ -47,8 +47,8 @@ class ProjectController < ApplicationController
     end
 
     get '/projects/:id/edit' do 
-        if logged_in?
-            @project = Project.find_by_id(params[:id])
+        @project = Project.find_by_id(params[:id])
+        if logged_in? && current_user.projects.include?(@project)
             erb :'/projects/edit'
         else 
             flash[:error] = "You must be logged in to edit a project."
@@ -61,7 +61,7 @@ class ProjectController < ApplicationController
         if params.empty?
             flash[:error] = "All fields must be filled in"
             redirect "/projects/#{@project.id}/edit"
-        elsif logged_in? && !params.empty?
+        elsif logged_in? && !params.empty? && current_user.projects.include?(@project)
             @project.update(name: params[:name], materials: params[:materials], image_url: params[:image_url], instructions: params[:instructions])
             redirect "/projects/#{@project.id}"
         else 
